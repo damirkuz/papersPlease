@@ -1,0 +1,72 @@
+{
+  "id": "niyaz",
+  "status": "ready",
+  "displayName": "Нияз",
+  "caseNumber": "ДР–002",
+  "portrait": "assets/people/niyaz/niyaz-portrait.png",
+  "permitReason": "Переход в следующий год жизни",
+  "intro": {
+    "title": "Проверка у береговой линии",
+    "notice": "В деле есть удочка и запись о пересечении береговой линии. Комиссии предстоит выяснить, что именно занесено в протокол.",
+    "subject": "На пункте пропуска ожидает Нияз."
+  },
+  "documents": [
+    {
+      "id": "passport", "kind": "passport", "title": "Паспорт", "reference": "ФОРМА П–01",
+      "text": "Удостоверение гражданина на время проверки.",
+      "details": [{ "label": "Пункт пропуска", "value": "КПП № 01" }]
+    },
+    {
+      "id": "dossier", "kind": "dossier", "title": "Досье", "reference": "ФОРМА Д–04",
+      "text": "Комиссии поступили четыре записи. Одна из них добавлена для игры."
+    },
+    {
+      "id": "shore-record", "kind": "record", "title": "Протокол берега", "reference": "ФОРМА Б–20",
+      "text": "На рыбалке зафиксированы удочка и дистанция в двадцать метров. Как они связаны, комиссии предстоит выяснить.",
+      "details": [{ "label": "Расстояние", "value": "20 м" }]
+    }
+  ],
+  "facts": [
+    { "id": "billiards-class", "text": "Собирался на мастер-класс по бильярду.", "sourceType": "selfReported", "isFabricated": false, "needsReview": false, "approvedForShow": true },
+    { "id": "volleyball", "text": "Любит волейбол.", "sourceType": "colleague", "isFabricated": false, "needsReview": false, "approvedForShow": true },
+    { "id": "boxing-cup", "text": "Победил в турнире по боксу среди первокурсников.", "sourceType": "selfReported", "isFabricated": false, "needsReview": false, "approvedForShow": true },
+    { "id": "five-cats", "text": "У него пять котов.", "sourceType": "fictional", "isFabricated": true, "needsReview": true, "approvedForShow": false, "notesForOrganizer": "Игровая подделка. Уточнить число котов у Нияза перед показом." }
+  ],
+  "scenes": [
+    {
+      "id": "document-check", "type": "facts", "title": "Проверка документов",
+      "subtitle": "Одна запись внесена в досье для игры.",
+      "instruction": "Дайте коллегам выбрать букву. После голосования нажмите «Проверить».",
+      "documentIds": ["passport", "dossier"],
+      "visitorFraming": "forehead",
+      "dialogue": [{ "speaker": "inspector", "text": "Связь есть. Кадр уточняется." }],
+      "prompt": "Какая запись поддельная?",
+      "factIds": ["billiards-class", "five-cats", "boxing-cup", "volleyball"],
+      "answerId": "five-cats",
+      "correctFeedback": "Подделка обнаружена",
+      "wrongFeedback": "Версия проверена",
+      "explanation": "Запись про пятерых котов добавили для игры."
+    },
+    {
+      "id": "shore-incident", "type": "discussion", "title": "Удочка и двадцать метров",
+      "subtitle": "Две детали из истории Нияза о рыбалке.",
+      "instruction": "Спросите команду, как связаны удочка и двадцать метров. Дайте Ниязу слово или откройте развязку.",
+      "documentIds": ["shore-record", "passport"],
+      "dialogue": [{ "speaker": "inspector", "text": "В протоколе два пункта. Удочка. Двадцать метров." }],
+      "prompt": "Как связаны удочка и двадцать метров?",
+      "shore": { "title": "Схема берега", "distance": "20 м", "bank": "Берег", "water": "Мелководье" },
+      "outcome": {
+        "title": "За удочкой по мелководью",
+        "text": "Рыба утащила удочку. Ниязу пришлось зайти в холодную воду и пройти за ней двадцать метров.",
+        "sourceType": "selfReported", "needsReview": false, "approvedForShow": true
+      },
+      "revealDialogue": [{ "speaker": "inspector", "text": "Уточняю. Двадцать метров прошёл рыбак." }]
+    }
+  ],
+  "award": {
+    "title": "Медаль «За волю к улову»",
+    "citation": "За боксёрское упорство на рыбалке.",
+    "greeting": "С днём рождения, Нияз! Пусть рыбалка радует, а за удачей всегда ведёт сухая тропа.",
+    "motif": "fishing"
+  }
+}

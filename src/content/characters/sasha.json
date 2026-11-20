@@ -1,0 +1,86 @@
+{
+  "id": "sasha",
+  "status": "ready",
+  "displayName": "Саша",
+  "caseNumber": "ДР–001",
+  "portrait": "assets/people/sasha/sasha-portrait.png",
+  "windowMark": "ы",
+  "permitReason": "Переход в следующий год жизни",
+  "intro": {
+    "title": "Внеочередная проверка",
+    "notice": "Обнаружен гражданин, пытающийся перейти в следующий год жизни. Назначена внеочередная проверка.",
+    "subject": "На пункте пропуска ожидает Саша. Комиссии предстоит сверить документы и восстановить маршрут."
+  },
+  "documents": [
+    {
+      "id": "passport", "kind": "passport", "title": "Паспорт", "reference": "ФОРМА П–01",
+      "text": "Удостоверение гражданина на время проверки.",
+      "details": [{ "label": "Пункт пропуска", "value": "КПП № 01" }]
+    },
+    {
+      "id": "dossier", "kind": "dossier", "title": "Досье", "reference": "ФОРМА Д–04",
+      "text": "Комиссии поступили четыре записи. Одна из них добавлена для игры."
+    },
+    {
+      "id": "ticket", "kind": "record", "title": "Посадочный талон", "reference": "ФОРМА Р–01",
+      "text": "Игровой талон по материалам рассказа Саши.",
+      "details": [
+        { "label": "Аэропорт вылета", "value": "Шереметьево" },
+        { "label": "Пункт назначения", "value": "Шри-Ланка" }
+      ]
+    },
+    {
+      "id": "arrival", "kind": "record", "title": "Отметка о прибытии", "reference": "ФОРМА Р–02",
+      "text": "Перед вылетом Саша приехала в Домодедово."
+    }
+  ],
+  "facts": [
+    { "id": "northern-lights", "text": "Видела северное сияние.", "sourceType": "selfReported", "isFabricated": false, "needsReview": false, "approvedForShow": true },
+    { "id": "kangaroo", "text": "Победила на олимпиаде «Кенгуру».", "sourceType": "selfReported", "isFabricated": false, "needsReview": false, "approvedForShow": true },
+    { "id": "school-band", "text": "Пела в школьной рок-группе.", "sourceType": "fictional", "isFabricated": true, "needsReview": true, "approvedForShow": false, "notesForOrganizer": "Игровая подделка, выбранная для досье. Перед показом сверить с Сашей." },
+    { "id": "driving", "text": "Получила водительские права ещё в школе.", "sourceType": "selfReported", "isFabricated": false, "needsReview": false, "approvedForShow": true }
+  ],
+  "evidence": [
+    {
+      "id": "guide", "title": "Показание коллеги",
+      "text": "На корпоративе вывела нас куда нужно — мы просто шли за ней.",
+      "icon": "journal", "sourceType": "colleague", "needsReview": false, "approvedForShow": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "document-check", "type": "facts", "title": "Проверка документов", "subtitle": "В досье гражданки появилась одна поддельная запись.",
+      "instruction": "Прочитайте записи вслух. Дайте команде выбрать букву, затем проверьте версию.",
+      "documentIds": ["passport", "dossier"],
+      "dialogue": [{ "speaker": "inspector", "text": "В досье четыре записи. Одна лишняя." }],
+      "prompt": "Какая запись поддельная?",
+      "factIds": ["northern-lights", "kangaroo", "school-band", "driving"],
+      "answerId": "school-band",
+      "correctFeedback": "Подделка обнаружена",
+      "wrongFeedback": "Версия проверена",
+      "explanation": "Запись про школьную рок-группу добавили для игры."
+    },
+    {
+      "id": "airport-incident", "type": "discussion", "title": "Два аэропорта",
+      "subtitle": "Сверьте посадочный талон и отметку о прибытии.",
+      "instruction": "Дайте коллегам предложить версии вслух. Затем передайте слово Саше или откройте развязку.",
+      "documentIds": ["ticket", "arrival", "passport"],
+      "dialogue": [{ "speaker": "inspector", "text": "Шереметьево по билету. Домодедово по факту. Как это вышло?" }],
+      "prompt": "Как в деле одного рейса оказались два аэропорта?",
+      "route": { "from": "Домодедово", "to": "Шереметьево", "after": "Шри-Ланка" },
+      "outcome": {
+        "title": "Посадка состоялась",
+        "text": "Саша перепутала аэропорты. Из Домодедово она добралась до Шереметьево и успела на свой рейс на Шри-Ланку.",
+        "sourceType": "selfReported", "needsReview": false, "approvedForShow": true
+      },
+      "afterNoteId": "guide",
+      "revealDialogue": [{ "speaker": "inspector", "text": "Пассажир и самолёт встретились в Шереметьево." }]
+    }
+  ],
+  "award": {
+    "title": "Медаль «Маршрут перестроен»",
+    "citation": "За прибытие вовремя после незапланированных объездов.",
+    "greeting": "С днём рождения, Саша! Пусть по пути будет больше хороших попутчиков, неожиданных открытий и вкусных булочек.",
+    "motif": "compass"
+  }
+}

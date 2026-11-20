@@ -1,0 +1,72 @@
+{
+  "id": "mark",
+  "status": "ready",
+  "displayName": "Марк",
+  "caseNumber": "ДР–003",
+  "portrait": "assets/people/mark/mark-portrait.png",
+  "permitReason": "Переход в следующий год жизни",
+  "intro": {
+    "title": "Кадр с Дня города",
+    "notice": "На пункт пропуска поступил кадр из Калининграда. Комиссии предстоит сверить досье и восстановить, что осталось за кадром.",
+    "subject": "На связь выходит Марк."
+  },
+  "documents": [
+    {
+      "id": "passport", "kind": "passport", "title": "Паспорт", "reference": "ФОРМА П–01",
+      "text": "Удостоверение гражданина на время проверки.",
+      "details": [{ "label": "Пункт пропуска", "value": "КПП № 01" }]
+    },
+    {
+      "id": "dossier", "kind": "dossier", "title": "Досье", "reference": "ФОРМА Д–04",
+      "text": "Комиссии поступили четыре записи. Одна из них добавлена для игры."
+    },
+    {
+      "id": "city-record", "kind": "record", "title": "Запись телекамеры", "reference": "ФОРМА Т–01",
+      "text": "На Дне города вокруг много людей. Камера снимает Марка с верёвочкой в руке. Другой конец верёвочки уходит за край кадра.",
+      "details": [{ "label": "Место съёмки", "value": "Калининград" }]
+    }
+  ],
+  "facts": [
+    { "id": "drums", "text": "Играет на барабанах.", "sourceType": "selfReported", "isFabricated": false, "needsReview": false, "approvedForShow": true },
+    { "id": "motorcycle", "text": "Ездит на мотоцикле примерно с девяти лет.", "sourceType": "selfReported", "isFabricated": false, "needsReview": false, "approvedForShow": true },
+    { "id": "scala", "text": "Scala — его любимый язык.", "sourceType": "fictional", "isFabricated": true, "needsReview": false, "approvedForShow": true, "notesForOrganizer": "Одобренная игровая подделка по шутке коллеги, который сам уточнил, что это подкол." },
+    { "id": "machinery", "text": "Продавал экскаваторы и погрузчики.", "sourceType": "selfReported", "isFabricated": false, "needsReview": false, "approvedForShow": true }
+  ],
+  "scenes": [
+    {
+      "id": "document-check", "type": "facts", "title": "Проверка документов",
+      "subtitle": "Одна запись внесена в досье для игры.",
+      "instruction": "Дайте коллегам выбрать букву. После голосования нажмите «Проверить».",
+      "documentIds": ["passport", "dossier"],
+      "visitorBackdrop": "cockpit",
+      "dialogue": [{ "speaker": "citizen", "text": "ХАЛЕСИКИ" }],
+      "prompt": "Какая запись поддельная?",
+      "factIds": ["drums", "motorcycle", "scala", "machinery"],
+      "answerId": "scala",
+      "correctFeedback": "Подделка обнаружена",
+      "wrongFeedback": "Версия проверена",
+      "explanation": "Марк писал на Scala. Запись про любимый язык выросла из шутки коллеги."
+    },
+    {
+      "id": "city-incident", "type": "discussion", "title": "Что осталось за кадром",
+      "subtitle": "День города в Калининграде. Телекамера снимает Марка с верёвочкой в руке.",
+      "instruction": "Покажите кадр и выслушайте версии команды. Дайте Марку слово или откройте развязку.",
+      "documentIds": ["city-record", "passport"],
+      "dialogue": [{ "speaker": "inspector", "text": "Один конец верёвочки в кадре. Комиссии поручено установить, что на другом." }],
+      "prompt": "Что было на другом конце верёвочки?",
+      "parade": { "title": "Кадр с Дня города", "location": "Калининград" },
+      "outcome": {
+        "title": "Седельный тягач",
+        "text": "На Дне города в Калининграде маленький Марк вёл за собой огромный тягач на верёвочке, как игрушечную машинку. Это снимало телевидение.",
+        "sourceType": "selfReported", "needsReview": false, "approvedForShow": true
+      },
+      "revealDialogue": [{ "speaker": "inspector", "text": "Груз заявлен как ручная кладь." }]
+    }
+  ],
+  "award": {
+    "title": "Медаль «Ручная кладь»",
+    "citation": "За любовь к большой технике с детства.",
+    "greeting": "С днём рождения, Марк! Пусть впереди будет много хороших дорог и интересной техники.",
+    "motif": "truck"
+  }
+}

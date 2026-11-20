@@ -1,0 +1,65 @@
+{
+  "id": "demo", "status": "demo", "displayName": "Агент Клён", "caseNumber": "УЧ–010",
+  "permitReason": "Допуск к учебному чаепитию",
+  "intro": {
+    "title": "Учебная проверка",
+    "notice": "Вымышленный гражданин прибыл на тренировочный пункт. Комиссии поручено проверить допуск к чаепитию.",
+    "subject": "Агент Клён предъявил пропуск и пакет учебных материалов."
+  },
+  "documents": [
+    { "id": "passport", "kind": "passport", "title": "Учебный паспорт", "reference": "П–УЧ", "text": "Имитация удостоверения." },
+    { "id": "dossier", "kind": "dossier", "title": "Досье", "reference": "Д–УЧ", "text": "В описи одна лишняя запись." },
+    { "id": "record", "kind": "record", "title": "Опись чайника", "reference": "И–УЧ", "text": "На учениях чайник исчез из кухни." },
+    { "id": "permit", "kind": "permit", "title": "Допуск", "reference": "В–УЧ", "text": "Выдаётся для отработки финальной печати." }
+  ],
+  "facts": [
+    { "id": "tea", "text": "Заваривает чай в жёлтой кружке.", "sourceType": "fictional", "isFabricated": false, "approvedForShow": true, "needsReview": false },
+    { "id": "ticket", "text": "Хранит пропуск в левом кармане.", "sourceType": "fictional", "isFabricated": false, "approvedForShow": true, "needsReview": false },
+    { "id": "train", "text": "Ездит на работу на паровозе.", "sourceType": "fictional", "isFabricated": true, "approvedForShow": true, "needsReview": false },
+    { "id": "window", "text": "Предпочитает место у окна.", "sourceType": "fictional", "isFabricated": false, "approvedForShow": true, "needsReview": false }
+  ],
+  "evidence": [
+    { "id": "leaves", "title": "Чайный след", "text": "На кухне найдена банка заварки.", "icon": "bun", "sourceType": "fictional", "approvedForShow": true, "needsReview": false },
+    { "id": "kettle", "title": "Тёплый чайник", "text": "Чайник вернулся тёплым.", "icon": "compass", "sourceType": "fictional", "approvedForShow": true, "needsReview": false }
+  ],
+  "scenes": [
+    {
+      "id": "facts", "type": "facts", "title": "Учебное досье", "subtitle": "Тренировка проверки документов.",
+      "instruction": "Укажите лишнюю запись.", "documentIds": ["passport", "dossier"],
+      "dialogue": [{ "speaker": "inspector", "text": "У отдела транспорта есть вопросы." }],
+      "prompt": "Что добавили в досье для проверки?", "factIds": ["tea", "ticket", "train", "window"], "answerId": "train",
+      "correctFeedback": "Верно", "wrongFeedback": "Версия принята", "explanation": "По расписанию паровоз сегодня не ходит."
+    },
+    {
+      "id": "kettle", "type": "incident", "title": "Дело о чайнике", "subtitle": "Инвентарь покинул кухню.",
+      "instruction": "Выберите, где искали чайник.", "documentIds": ["record"],
+      "dialogue": [{ "speaker": "citizen", "text": "На кухне сегодня подозрительно тихо." }],
+      "prompt": "Где обнаружили чайник?", "answerId": "hall",
+      "options": [
+        { "id": "roof", "text": "На крыше.", "sourceType": "fictional", "approvedForShow": true, "needsReview": false },
+        { "id": "hall", "text": "В переговорной.", "sourceType": "fictional", "approvedForShow": true, "needsReview": false },
+        { "id": "steps", "text": "На лестнице.", "sourceType": "fictional", "approvedForShow": true, "needsReview": false }
+      ],
+      "correctFeedback": "Чайник найден", "wrongFeedback": "Поиск продолжен", "explanation": "Комиссия нашла чайник в переговорной.",
+      "revealDialogue": [{ "speaker": "citizen", "text": "В переговорной уже накрыли стол." }]
+    },
+    {
+      "id": "tea", "type": "witness", "title": "По горячим следам", "subtitle": "Улики ещё не остыли.",
+      "instruction": "Приобщите обе улики.", "documentIds": ["record"],
+      "dialogue": [{ "speaker": "inspector", "text": "Требуется заключение по вещественным доказательствам." }],
+      "prompt": "Какие улики подтверждают чаепитие?", "evidenceIds": ["leaves", "kettle"], "answerIds": ["leaves", "kettle"],
+      "conclusion": "В переговорной действительно заварили чай.", "alternateFeedback": "В материалы приобщена дополнительная версия."
+    },
+    {
+      "id": "verdict", "type": "verdict", "title": "Учебный вердикт", "subtitle": "Дело готово к закрытию.",
+      "instruction": "Огласите решение.", "documentIds": ["permit"],
+      "dialogue": [{ "speaker": "inspector", "text": "Комиссия просит передать кружку." }],
+      "charge": "Подозрение в организации внепланового чаепития.",
+      "ruling": "Признать внеплановое чаепитие частью учебного плана."
+    }
+  ],
+  "award": {
+    "title": "Звезда чайного снабжения", "citation": "За готовность делиться горячим чаем с комиссией.",
+    "greeting": "Учебная проверка завершена. Всем по кружке!", "motif": "star"
+  }
+}
